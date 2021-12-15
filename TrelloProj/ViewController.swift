@@ -7,7 +7,9 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
+    
+    var array: [String] = [""]
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var textField: UITextField!
     
@@ -19,5 +21,14 @@ class ViewController: UIViewController {
     @IBAction func whenAddButtonPressed(_ sender: Any) {
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "myCell")!
+        cell.textLabel?.text = array[indexPath.row]
+        return cell
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+       return array.count
+    }
+
 }
 
